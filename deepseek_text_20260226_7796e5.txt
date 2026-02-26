@@ -1,0 +1,45 @@
+
+## 📦 How to Download All Files
+
+### Option 1: Manual Download
+1. Copy each file content above
+2. Create the files locally with the exact names
+3. Maintain the folder structure
+
+### Option 2: Create a ZIP Package
+Save this Python script as `create_project.py` and run it:
+
+```python
+import os
+import zipfile
+
+def create_project_files():
+    # Create directories
+    os.makedirs('templates', exist_ok=True)
+    
+    # File contents (copy from above)
+    files = {
+        'app.py': '''[Content from app.py above]''',
+        'requirements.txt': '''[Content from requirements.txt above]''',
+        '.env': '''[Content from .env above]''',
+        'templates/index.html': '''[Content from index.html above]''',
+        '.gitignore': '''[Content from .gitignore above]''',
+        'README.md': '''[Content from README.md above]''',
+        'Procfile': 'web: gunicorn app:app'
+    }
+    
+    for filepath, content in files.items():
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(content)
+    
+    # Create ZIP
+    with zipfile.ZipFile('ai-content-studio.zip', 'w') as zipf:
+        for root, dirs, files in os.walk('.'):
+            for file in files:
+                if file != 'create_project.py' and not file.endswith('.zip'):
+                    zipf.write(os.path.join(root, file))
+    
+    print("✅ Project files created and zipped as 'ai-content-studio.zip'")
+
+if __name__ == '__main__':
+    create_project_files()

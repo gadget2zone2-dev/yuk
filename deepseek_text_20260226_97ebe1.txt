@@ -1,0 +1,8 @@
+ai-content-creation-studio/
+├── app.py                 # Main application
+├── requirements.txt       # Python dependencies
+├── .env                   # Environment variables
+├── .gitignore            # Git ignore file
+├── README.md             # Documentation
+└── templates/
+    └── index.html        # Frontend interface
